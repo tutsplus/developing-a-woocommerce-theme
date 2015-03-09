@@ -1,0 +1,962 @@
+/*
+Theme Name: WooCommerce Theme Development
+Theme URI: http://rachelmccollin.co.uk
+Author: Rachel McCollin
+Author URI: http://rachelmccollin.co.uk
+Description: The theme to accompany the tutsplus course on developing a store theme for use with WooCommerce.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+
+/*Contents
+1. CSS reset
+2. Layout
+3. Global elements
+4. Menu
+5. Content
+6. Images and gallery
+7. Navigation
+8. Widget areas
+9. Footer
+10. Colours
+11. Media queries
+12. Print
+*/
+
+
+/* 1. Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
+-------------------------------------------------------------- */
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a img {
+	border: none;
+}
+
+/* 2. Layout
+-------------------------------------------------------------- */
+/* layout */
+body, footer, .header-wrapper, .navwrapper, .banner-wrapper {
+	width: 100%;
+	margin: 0;
+}
+header, .main, .colophon, nav.main, .fatfooter {
+	margin: 0 auto;
+	width: 96%;
+	max-width: 1000px;
+}
+.navwrapper {
+	float: left;
+}
+.header-wrapper {
+	padding: 10px 0;
+}
+div.main {
+	padding-top: 1em;
+}
+footer {
+	padding: 0;
+	overflow: auto;
+	margin-top: 20px;
+}
+.colophon {
+	padding: 0.5em 0;
+}
+body {
+	padding: 20px 0;
+}
+.banner-wrapper {
+	margin: 0;
+}
+
+
+/* floats */
+.quarter,
+.one-third,
+.two-thirds,
+.half {
+	float: left;
+}
+
+/****************************** widths and margins ************************/
+
+/* widths for different proportions */
+.one-third {
+	width: 32%;
+}
+.two-thirds {
+	width: 65.5%;
+}
+.quarter {
+	width: 23.5%;
+}
+.three-quarters {
+	width: 74.5%;
+}
+.half {
+	width: 48%;
+}
+
+/* margins - 1% generally except for the .half width. Remember that these will be cumulative
+- so four items side by side will have 6% added in margins, 
+assuming the left and right ones are given .left and .right classes */
+.one-third {
+	margin: 0 0.5%;
+}
+.quarter,
+.two-thirds {
+	margin: 0 0.5%;
+}
+.left,
+.quarter.left,
+.one-third.left {
+	margin: 0 1% 0 0;
+	float: left;
+}
+.right,
+.quarter.right,
+.one-third.right {
+	margin: 0 0 0 1%;
+	float: right;
+}
+.half.left {
+	width: 48%;
+	margin: 0 2% 0 0;
+}
+.half.right {
+	width: 48%;
+	margin: 0 0 0 2%;
+}
+.two-thirds.left {
+	margin: 0 1% 0 0;
+}
+.two-thirds.right {
+	margin: 0 0 0 1%;
+	float: right;
+}
+
+
+/* adjust margins around floated images in line with larger screen size */
+#content .alignleft,
+#content img.alignleft {
+	margin-right: 3%;
+}
+#content .alignright,
+#content img.alignright {
+	margin-left: 3%;
+	overflow: auto;
+}
+
+/**************** archive page - margins between articles **********/
+.archive #content article,
+.blog #content article{
+	margin-top: 10px;
+	overflow: auto;
+}
+
+/****************** floats *******************/
+
+/* styles to ensure floated elements inside block elements laid out correctly */
+header,
+div.main,
+aside {
+	overflow: auto;
+}
+.main-nav {
+	width: 100%;
+	clear: both;
+}
+div.main, footer {
+	clear: both;
+}
+
+/* styles for alignment - not used by main layout blocks but may be used within content on occasion */
+.floatleft {
+	float: left;
+	margin-right: 3%; /* approx 10px */
+}
+.floatright {
+	float: right;
+	margin-left: 3%; /* approx 10px */
+}
+.center {
+	float: none;
+	margin: 0 auto;
+}
+
+/* class for clearing elements */
+.clear {
+	clear: both;
+}
+
+/**************** header - margins for breathing room **********/
+h1#site-title {
+	margin-bottom: 0.2em;
+}
+h2#site-description {
+	margin: 0 0 1em 0;
+	font-size: 1.28em;
+}
+.header.widget-area {
+	padding-top: 1em;
+}
+
+/* search box */
+#woocommerce_product_search-2 {
+	float: right;
+}
+
+
+
+/**************** footer and widgets - margins for breathing room **********/
+
+/* footer */
+footer .fatfooter {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+/* home page widgets */
+.home-page-widgets .widget-area {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+/
+
+/* 3. Text Elements
+-------------------------------------------------------------- */
+
+/* Main fonts and typographic styles */
+
+body {
+	font-size: 14px;
+	line-height: 1.4em;
+	font-family: Georgia, "Times New Roman", serif;
+}
+code {
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+blockquote {
+	font-style: italic;
+	padding: 0 3em;
+}
+input[type="text"],
+textarea {
+	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
+	-moz-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
+	-webkit-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
+	padding: 2px;
+}
+
+/* Contact details in header */
+header address {
+	font-style: normal;
+	text-align: right;
+}
+header address p {
+	margin: 0.2em 0;
+}
+
+/* Headings */
+h1, h2, h3, h4, .site-name {
+	font-family: 'Open Sans', sans-serif;
+}
+h1, #site-title {
+	font-size: 1.57em; /*22px*/
+}
+h2 {
+	font-size: 1.28 em; /*18px*/
+}
+h3 {
+	font-size: 1.14em; /*16px*/
+}
+h4 {
+	font-size: 1em;
+	font-style: bold;
+}
+h5{
+	font-size: 1em;
+	font-style: italic;
+}
+h6 {
+	font-size: 1em;
+	font-style: normal;
+}
+h1, h2, h3 {
+	line-height: 1.2em;
+}	
+
+/* Text element layout */
+
+p {
+	margin-bottom: 1em;
+}
+ul, ol, ul ul, ol ol, ul ul ul, ol ol ol {
+	list-style-position: outside;
+	padding-left: 1.4em;
+	margin: 0 0 1.4em 0;
+}
+ol,ol ol, ol ol ol {
+	padding-left: 1.7em;
+}
+
+ul {
+	list-style: disc;
+}
+ol {
+	list-style: decimal;
+}
+ol ol {
+	list-style: upper-alpha;
+}
+ol ol ol {
+	list-style: lower-roman;
+}
+ol ol ol ol {
+	list-style: lower-alpha;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-bottom: 0;
+}
+dl {
+	margin: 0 0 2em 0;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	margin-bottom: 1.4em;
+}
+code {
+	font-size: 0.8em;
+}
+abbr,
+acronym {
+	cursor: help;
+}
+sup,
+sub {
+	height: 0;
+	line-height: 1;
+	position: relative;
+	vertical-align: baseline;
+}
+sup {
+	bottom: 1ex;
+}
+sub {
+	top: .5ex;
+}
+
+/* Text meant only for screen readers */
+.screen-reader-text {
+	position: absolute;
+	left: -9000px;
+}
+
+
+
+
+/* 4. Menu
+-------------------------------------------------------------- */
+
+.menu.main {
+	margin-bottom: 10px;
+}
+.menu.main ul {
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+.menu.main li {
+	float: left;
+	position: relative;
+}
+.menu.main a {
+	display: block;
+	line-height: 3em;
+	padding: 0 20px;
+	text-decoration: none;
+}
+.menu.main ul ul {
+	-moz-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+	box-shadow: 0px 3px 3px rgba(0,0,0,0.2);
+	display: none;
+	position: absolute;
+	top: 3em;
+	left: 0;
+	float: left;
+	width: 180px;
+	z-index: 99999;
+}
+.menu.main ul ul li {
+	min-width: 180px;
+}
+.menu.main ul ul ul {
+	left: 100%;
+	top: 0;
+}
+.menu.main ul ul a {
+	line-height: 1em;
+	padding: 10px;
+	width: 160px;
+	height: auto;
+}
+.menu.main ul li:hover > ul {
+	display: block;
+}
+
+
+/* 5. Content
+-------------------------------------------------------------- */
+
+/* Content table styles */
+#content table {
+	margin: 0 -1px 24px 0;
+	text-align: left;
+	width: 100%;
+}
+#content tr th,
+#content thead th {
+	font-size: 0.8em;
+	font-weight: bold;
+	line-height: 1.4em;
+	padding: 9px 24px;
+}
+#content tr td {
+	padding: 6px 24px;
+}
+
+
+/* Asides */
+
+.home #content .category-asides p,
+.home #content article aside p {
+	font-size: 1em;
+	line-height: 1.6em;
+	margin-top: 0;
+}
+.home .hentry.category-asides {
+	padding: 0;
+}
+.home #content .category-asides .entry-content,
+.home #content article aside .entry-content{
+	padding-top: 0;
+}
+
+/* Attachment pages */
+
+.attachment .entry-content .entry-caption {
+	font-size: 1.4em;
+}
+.attachment .entry-content .nav-previous a:before {
+	content: '\2190\00a0';
+}
+.attachment .entry-content .nav-next a:after {
+	content: '\00a0\2192';
+}
+
+/* product category images */
+#content .product-cat-image {
+	margin: 1em 0;
+}
+#content .term-description {
+	font-family: 'Open Sans', sans-serif;
+	color: #70C7D4;
+	line-height: 1.4em;
+}
+
+/* search page */
+body.search #content form,
+body.search #content h3 {
+	margin: 1em 0;
+}
+
+
+/* 6. Gallery and images
+-------------------------------------------------------------- */
+
+/* Images */
+
+img {
+	max-width: 100%;	
+}
+#content img {
+	margin: 0;
+	height: auto;
+	width: auto;
+}
+#content .alignleft,
+#content img.alignleft {
+	float: left;
+	margin: 4px 4% 4px 0;
+}
+#content .alignright,
+#content img.alignright {
+	float: right;
+	margin: 4px 0 4px 4%;
+}
+#content .aligncenter,
+#content img.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+#content img.alignleft,
+#content img.alignright,
+#content img.aligncenter {
+	margin-bottom: 12px;
+}
+
+/* Captions */
+
+#content .wp-caption {
+	line-height: 1.4em;
+	padding: 4px;
+	text-align: center;
+}
+#content .wp-caption img {
+	margin: 5px 5px 0;
+}
+#content .wp-caption p.wp-caption-text {
+	font-size: 0.8em;
+	margin: 5px;
+}
+
+
+/* Gallery */
+
+#content .gallery {
+	margin: 0 auto;
+}
+#content .gallery .gallery-item {
+	float: left;
+	margin-top: 0;
+	text-align: center;
+	width: 33%;
+}
+#content .gallery .gallery-item img {
+	padding: 5px;
+	border: 1px solid #bbb;
+}
+#content .gallery .gallery-caption {
+	font-size: 0.8em;
+	margin: 0 0 12px;
+}
+#content .gallery dl {
+	margin: 0;
+}
+#content .gallery br+br {
+	display: none;
+}
+#content .attachment img { /* centers single attachment images */
+	display: block;
+	margin: 0 auto;
+}
+
+
+/* 7. In-content navigation
+-------------------------------------------------------------- */
+
+.navigation {
+	font-size: 0.8em;
+	line-height: 1.5em;
+	overflow: hidden;
+}
+.nav-previous {
+	float: left;
+	width: 50%;
+}
+.nav-next {
+	float: right;
+	text-align: right;
+	width: 50%;
+}
+.nav-below {
+	margin: 20px 0;
+}
+
+/* Links to product category archives */
+.product-cat-links {
+	overflow: auto;
+	margin-bottom: 1em;
+} 
+.product-cat-links div {
+	position: relative;
+} 
+.product-cat-links h3 {
+	position: absolute;
+	right: 3px;
+	bottom: 10px;
+	font-size: 1.5em;
+}
+
+
+
+
+/* 8. Widget Areas
+-------------------------------------------------------------- */
+
+.widget-area .widget-container {
+	margin-left: 0;
+}
+.widget_search #s {/* This keeps the search inputs in line */
+	width: 70%;
+}
+.widget_search label {
+	display: none;
+}
+.widget-area a:link,
+.widget-area a:visited {
+	text-decoration: none;
+}
+.widget-area a:active,
+.widget-area a:hover {
+	text-decoration: underline;
+}
+.widget-area .entry-meta {
+	font-size: 0.7em;
+}
+.widget-area ul {
+	padding-left: 0;
+}
+.widget-area li {
+	list-style-type: none;
+}
+#wp_tag_cloud div {
+	line-height: 1.6em;
+}
+
+/* featured products in sidebar */
+.featured-products {
+	margin-top: 1em;
+}
+.featured-products ul {
+	padding-left: 0;
+}
+.featured-products ul li {
+	list-style: none;
+	padding-top: 10px;
+	position: relative;
+}
+.featured-products ul li .featured-product-text {
+	position: absolute;
+	right: 15px;
+	bottom: 10px;
+}
+
+
+/* 9. Footer
+-------------------------------------------------------------- */
+
+#credits a,
+#credits a:hover {
+	text-decoration: underline;
+}
+#colophon {
+	padding: 10px 0 20px 0;
+}
+
+
+/* 10. Colors
+-------------------------------------------------------------- */
+/* 
+Main colors:
+Petrol blue: #002C43
+Coral #CF4939
+Tan #977632
+Duck Egg #70C7D4
+Dark grey #494949
+
+*/
+body {
+	color: #494949;
+}
+h1, #site-title a {
+	color: #70C7D4;
+}
+h2 {
+	color: #666;
+}
+h3, h4 {
+	color: #999;
+}
+a:link, a:visited {
+	color: #70C7D4;
+	text-decoration: underline;
+}
+a:hover, a:active {
+	color: #977632;
+	text-decoration: underline;
+}
+.entry-title a:link,
+.entry-title a:visited,
+#site-title a:link,
+#site-title a:visited {
+	text-decoration: none;
+}
+.entry-title a:hover,
+.entry-title a:active,
+#site-title a:hover,
+#site-title a:active  {
+	text-decoration: underline;
+}
+
+/* Menu colours */
+.navwrapper, .menu.main, .menu.main ul ul  {
+	background: #002C43;
+}
+.menu.main a {
+	color: #fff;
+}
+.menu.main li:hover > a,
+.menu.main ul ul :hover > a,
+.menu.main ul li.current_page_item > a,
+.menu.main ul li.current-menu-ancestor > a,
+.menu.main ul li.current-menu-item > a,
+.menu.main ul li.current-menu-parent > a,
+* html.menu .main ul li.current_page_item a,
+* html.menu .main ul li.current-menu-ancestor a,
+* html.menu .main ul li.current-menu-item a,
+* html.menu .main ul li.current-menu-parent a,
+* html.menu .main ul li a:hover {
+	color: #fff;
+	background: #70C7D4;
+}
+
+
+/* a background for the fat footer, with adjustments to text color */
+footer {
+	background: #70C7D4;
+	color: #fff;
+}
+footer a:link,
+footer a:visited {
+	color: #fff;
+	text-decoration: underline;
+}
+footer a:hover,
+footer a:active {
+	color: #977632;
+}
+
+/* single product page - colors */
+.woocommerce div.product p.price,
+.woocommerce div.product span.price {
+	color: #977632 !important;
+}
+#content .product h2 {
+	color: #70C7D4;
+}
+/* buttons */
+.woocommerce #respond input#submit.alt,
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt {
+	background-color: #CF4939 !important;
+}
+
+/* related products */
+.woocommerce .related ul li.product,
+.woocommerce .related ul.products li.product, 
+.woocommerce .upsells.products ul li.product, 
+.woocommerce .upsells.products ul.products li.product, 
+.woocommerce-page .related ul li.product, 
+.woocommerce-page .related ul.products li.product, 
+.woocommerce-page .upsells.products ul li.product, 
+.woocommerce-page .upsells.products ul.products li.product {
+	width: 25% !important;
+}
+
+
+/* 12. Media queries
+-------------------------------------------------------------- */
+
+/* media queries for large desktop screens */
+@media screen and ( min-width: 1200px ) {
+}
+
+/* media queries for larger screens such as small tablets in landscape or large tablets in portrait */
+@media screen and ( max-width: 780px ) {
+	/* only the .quarter layout class is relevant here - all other classes will have full width */
+	.quarter {
+		width: 48%;
+	}
+	.quarter.left {
+		margin-right: 2%;
+	}
+	.quarter.right {
+		margin-left: 2%;
+	}
+	footer .third.quarter.widget-area {
+		clear: both;
+	}
+}
+
+/* media queries for small screens in landscape mode (or similar) */
+@media screen and ( max-width: 600px ) {
+	/* overall margins and padding - mainly vertical. These create some space around the elements of the layout */
+	body, footer {
+		width: 100%;
+		max-width: 100%;
+		margin: 0;
+	}
+	header, .main, .colophon, nav.main, .fatfooter {
+		margin: 0 10px;
+	}
+	/* width sizing all full width in small screens */
+	.quarter,
+	.one-third,
+	.half,
+	.two-thirds,
+	.three-quarters,
+	.full-width {
+		width: 100%;
+		margin: 0;
+	}
+	/* padding adjustments */
+	header, footer {
+		padding: 10px 0;
+	}
+	.widget-area {
+		padding: 0 0 10px 0;
+	}
+}
+/* media queries for small screens in portrait mode (or similar) */
+@media screen and ( max-width: 400px ) {
+
+}
+
+/* 13. Print
+-------------------------------------------------------------- */
+@media print {
+	body {
+		background: none !important;
+		clear: both !important;
+		display: block !important;
+		float: none !important;
+		position: relative !important;
+	}
+	header,
+	footer,
+	.colophon {
+		background: none !important;
+	}
+	header {
+		padding-bottom: 18pt;
+	}
+	.colophon {
+		border-top: 2pt solid #000;
+	}
+	.copyright,
+	.credits {
+		float: none;
+		line-height: 1.4em;
+		margin: 0;
+		padding: 0;
+		width: auto;
+	}
+	.site-title {
+		font-size: 21pt;
+	}
+	.entry-content {
+		font-size: 14pt;
+		line-height: 1.6em;
+	}
+	.entry-title {
+		font-size: 21pt;
+	}
+	nav.main,
+	.respond,
+	.comment-edit-link,
+	.edit-link,
+	.navigation,
+	.page-link {
+		display: none !important;
+	}
+	body,
+	header,
+	.main,
+	footer {
+		margin: 0;
+		width: 100%;
+	}
+	#content,
+	.one-column #content {
+		margin: 24pt 0 0;
+		width: 100%;
+	}
+	.wp-caption p {
+		font-size: 11pt;
+	}
+	.colophon {
+		width: auto;
+	}
+	img#wpstats {
+		display: none;
+	}
+	#entry-author-info {
+		border: 1px solid #e7e7e7;
+	}
+	.main {
+		display: inline;
+	}
+}
