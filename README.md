@@ -2,23 +2,23 @@
 
 Learn how to create a custom theme for a WooCommerce store, making use of the WooCommerce API to ensure that the screens on your store fit with your overall theme and your store’s brand.
 
-These source files comprise a theme developed for the [published url](Tuts+ course), which includes functions (in the functions.php file) that hook into hooks provided by the WooCommerce API. It also contains a template file in the `/woocommerce/loop` folder that overrides a template file provided by WooCommerce. See Part 5 of the course for a detailed description of how the theme is structured.
+These source files comprise a theme developed for the [Tuts+ course][published url], which includes functions (in the functions.php file) that hook into hooks provided by the WooCommerce API. It also contains a template file in the `/woocommerce/loop` folder that overrides a template file provided by WooCommerce. See Part 5 of the course for a detailed description of how the theme is structured.
 
 ## Files
 
 The theme includes the following template files:
-    archive.php
-    index.php
-    page.php - for static pages
-    page-full-width.php
-    archive.php - for archive pages
-    header.php
-    sidebar.php
-    footer.php
-    loop.php
-    loop-single.php
-    loop-page.php
-    functions.php
+* archive.php
+* index.php
+* page.php - for static pages
+* page-full-width.php
+* archive.php - for archive pages
+* header.php
+* sidebar.php
+* footer.php
+* loop.php
+* loop-single.php
+* loop-page.php
+* functions.php
 
 
 ## Features
@@ -62,8 +62,8 @@ There are six widget areas, all added via the widgets.php file:
 
 
 
-These are source files for the Tuts+ course: [published url](Developing a WooCommerce Theme)
+These are source files for the Tuts+ course: [Developing a WooCommerce Theme][published url]
 
-Available on [https://tutsplus.com](Tuts+) March, 2015
+Available on [Tuts+](https://tutsplus.com) March, 2015
 
-[published url](https://code.tutsplus.com/courses)
+[published url]: https://code.tutsplus.com/courses
