@@ -2,7 +2,7 @@
 
 Learn how to create a custom theme for a WooCommerce store, making use of the WooCommerce API to ensure that the screens on your store fit with your overall theme and your store’s brand.
 
-These source files comprise a theme developed for the [Tuts+ course][published url], which includes functions (in the functions.php file) that hook into hooks provided by the WooCommerce API. It also contains a template file in the `/woocommerce/loop` folder that overrides a template file provided by WooCommerce. See Part 5 of the course for a detailed description of how the theme is structured.
+These source files comprise a theme developed for the [Tuts+ course][published url], which includes functions (in the `functions.php` file) that hook into hooks provided by the WooCommerce API. It also contains a template file in the `/woocommerce/loop` folder that overrides a template file provided by WooCommerce. See Part 5 of the course for a detailed description of how the theme is structured.
 
 ## Files
 
