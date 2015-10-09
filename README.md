@@ -6,7 +6,11 @@ These source files comprise a theme developed for the [Tuts+ course][published u
 
 ## Files
 
-The theme includes the following template files:
+This repository has two subdirectories:
+ - `start`: The starter theme for this course project.
+ - `completed`: The completed theme as developed in the course.
+
+The completed theme includes the following template files:
 * `archive.php`
 * `index.php`
 * `page.php` - for static pages
@@ -24,14 +28,17 @@ The theme includes the following template files:
 ## Features
 
 ### Featured images
+
 These are displayed in the archive and index templates if they are present, using the medium size.
 
 ### Menus
+
 The default menu is in `header.php`, and uses the Menus admin
 
 ### Styling
-The theme uses Object Oriented CSS (OOCSS). The following clases are for layout and you can use them in your pages and posts.
-They are responsive, so will resize on smaller screens (for example the `.half` class is full width on phones)
+
+The theme uses Object Oriented CSS (OOCSS). The following clases are for layout and you can use them in your pages and posts. They are responsive, so will resize on smaller screens (for example the `.half` class is full width on phones).
+
 * `.full-width`
 * `.three-quarters`
 * `.two-thirds`
